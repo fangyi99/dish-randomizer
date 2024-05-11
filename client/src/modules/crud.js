@@ -87,7 +87,10 @@ const getRecipes = () => {
         fetch("http://localhost:8000/api/recipes/" + recipeId.value, requestOptions)
         .then(res => res.body)
         .then(res => {console.log(res)})
-        router.push({path: "/menu"})
+        .then(()=>{
+            getAllRecipes()
+            router.push({path: "/menu"})
+        })
     }
 
     const deleteRecipe = (_id) => {

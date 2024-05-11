@@ -13,6 +13,11 @@ const routes = [
     component: () => import('../views/MenuView.vue')
   },
   {
+    path: '/details/:id',
+    name: 'Details',
+    component: () => import('../views/DetailsView.vue')
+  },
+  {
     path: '/form',
     name: 'Create',
     component: () => import('../views/FormView.vue')
