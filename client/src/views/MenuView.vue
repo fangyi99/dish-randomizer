@@ -6,7 +6,7 @@
                 <h3>Menu</h3>
             </div>
             <div class="right">
-                <router-link to="/create"><button class="btn btn-nav btn-right">+</button></router-link>
+                <router-link to="/form"><button class="btn btn-nav btn-right">+</button></router-link>
             </div>
         </div>
         <table>
@@ -20,8 +20,8 @@
                 <tr v-for="recipe in state.recipes" v-bind:key="recipe._id">
                 <td>{{ recipe.name }}</td>
                 <td>
-                    <button class="btn btn-warning btn-action"><img alt="Edit" src="../assets/edit.png"></button>
-                    <button class="btn btn-danger btn-action"><img alt="Delete" src="../assets/delete.png"></button>
+                    <router-link :to="'/form/' + recipe._id"><button class="btn btn-warning btn-action"><img alt="Edit" src="../assets/edit.png"></button></router-link>
+                    <button class="btn btn-danger btn-action" @click="deleteRecipe(recipe._id)"><img alt="Delete" src="../assets/delete.png"></button>
                 </td>
                 </tr>
             </tbody>
@@ -37,13 +37,13 @@
     export default {
         setup(){
 
-            //createRecipe, updateRecipe, deleteRecipe
-            const {state, getAllRecipes} = crud()
+            const {state, getAllRecipes, deleteRecipe} = crud()
 
             onMounted(()=>{
                 getAllRecipes()
             })
-            return {state, getAllRecipes}
+
+            return {state, getAllRecipes, deleteRecipe}
         }
     }
 

@@ -4,24 +4,23 @@ import HomeView from '../views/HomeView.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: HomeView
   },
   {
     path: '/menu',
-    name: 'menu',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/MenuView.vue')
+    name: 'Menu',
+    component: () => import('../views/MenuView.vue')
   },
   {
-    path: '/create',
-    name: 'create',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
+    path: '/form',
+    name: 'Create',
+    component: () => import('../views/FormView.vue')
+  },
+  {
+    path: '/form/:id',
+    name: 'Update',
+    component: () => import('../views/FormView.vue')
   }
 ]
 

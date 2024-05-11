@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <div class="nav">
-      <h3>Create</h3>
+      <h3 v-if="$route.params.id">Update</h3>
+      <h3 v-else>Create</h3>
       <router-link to="/menu"><button class="btn btn-nav right"><img alt="Close" src="../assets/close.png"></button></router-link>
     </div>
 
@@ -26,8 +27,8 @@
       </div>
 
       <div class="mb-3">
-        <label for="instructionsInput" class="form-label">Ingredients</label>
-        <textarea class="form-control" id="instructionsInput" v-model="state.newIngredients"></textarea>
+        <label for="ingredientsInput" class="form-label">Ingredients</label>
+        <textarea class="form-control" id="ingredientsInput" v-model="state.newIngredients"></textarea>
       </div>
 
       <div class="mb-3">
@@ -41,21 +42,36 @@
       </div>
     </div>
 
-    <div class="btn-grp">
+    <div v-if="$route.params.id" class="btn-grp">
+      <router-link to="/menu"><button type="button" class="btn btn-danger">Cancel</button></router-link>
+      <button type="button" class="btn btn-success" @click="updateRecipe()">Update</button>
+    </div>
+
+    <div v-else class="btn-grp">
       <router-link to="/menu"><button type="button" class="btn btn-danger">Cancel</button></router-link>
       <button type="button" class="btn btn-success" @click="createRecipe()">Create</button>
     </div>
+
+
   </div>
 </template>
 
 <script>
+import {onMounted} from 'vue'
 import crud from '../modules/crud'
 
 export default {
   setup(){
-    const {state, createRecipe} = crud()
-    return {state, createRecipe}
-}
+    const {state, recipeId, getOne, createRecipe, updateRecipe} = crud()
+
+    onMounted(() => {
+    if (recipeId.value) {
+        getOne(recipeId.value);
+      }
+  })
+
+    return {state, recipeId, getOne, createRecipe, updateRecipe}
+  },
 }
 
 </script>
