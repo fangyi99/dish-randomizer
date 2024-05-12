@@ -3,6 +3,7 @@ import { useRoute, useRouter } from 'vue-router';
 
 const getRecipes = () => {
     const state = ref({
+        id: '',
         name: '',
         type: 'meat',
         ingredients: '',
@@ -21,11 +22,11 @@ const getRecipes = () => {
           await fetch("http://localhost:8000/api/recipes/" + id)
             .then(res =>  res.json() ) 
             .then(data => {
-                state.value.newName = data.name;
-                state.value.newType = data.type;
-                state.value.newIngredients = data.ingredients;
-                state.value.newInstructions = data.instructions;
-                state.value.newRemarks = data.remarks;
+                state.value.name = data.name;
+                state.value.type = data.type;
+                state.value.ingredients = data.ingredients;
+                state.value.instructions = data.instructions;
+                state.value.remarks = data.remarks;
             })
         }
         catch(error) {
@@ -53,11 +54,11 @@ const getRecipes = () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: state.value.newName,
-                type: state.value.newType,
-                ingredients: state.value.newIngredients,
-                instructions: state.value.newInstructions,
-                remarks: state.value.newRemarks
+                name: state.value.name,
+                type: state.value.type,
+                ingredients: state.value.ingredients,
+                instructions: state.value.instructions,
+                remarks: state.value.remarks
             })
         }
         fetch("http://localhost:8000/api/recipes", requestOptions)
@@ -77,11 +78,11 @@ const getRecipes = () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: state.value.newName,
-                type: state.value.newType,
-                ingredients: state.value.newIngredients,
-                instructions: state.value.newInstructions,
-                remarks: state.value.newRemarks
+                name: state.value.name,
+                type: state.value.type,
+                ingredients: state.value.ingredients,
+                instructions: state.value.instructions,
+                remarks: state.value.remarks
             })
         }
         fetch("http://localhost:8000/api/recipes/" + recipeId.value, requestOptions)
@@ -102,15 +103,35 @@ const getRecipes = () => {
 
     const resetForm = () => {
         state.value = {
-          newName: '',
-          newType: 'meat',
-          newIngredients: '',
-          newInstructions: '',
-          newRemarks: '',
+          name: '',
+          type: 'meat',
+          ingredients: '',
+          instructions: '',
+          remarks: '',
         };
     };
 
-    return {state, recipeId, getOne, getAllRecipes, createRecipe, updateRecipe, deleteRecipe, resetForm}
+    const randomRecipe = (type) => {
+        try {
+            fetch("http://localhost:8000/api/recipes")
+              .then(res =>  res.json() ) 
+              .then(data => {
+                  const filteredRecipes = data.filter(r => r.type === type)
+                  const random = filteredRecipes[Math.floor(Math.random() * filteredRecipes.length)]
+                  state.value.id = random._id;
+                  state.value.name = random.name;
+                  state.value.type = random.type;
+                  state.value.ingredients = random.ingredients;
+                  state.value.instructions = random.instructions;
+                  state.value.remarks = random.remarks;
+              })
+          }
+          catch(error) {
+            console.log(error)
+          }
+    }   
+
+    return {state, recipeId, getOne, getAllRecipes, createRecipe, updateRecipe, deleteRecipe, randomRecipe, resetForm}
 }
 
 export default getRecipes

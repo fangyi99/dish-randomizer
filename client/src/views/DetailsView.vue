@@ -13,26 +13,26 @@
       <div class="form">
         <div class="mb-3">
           <label for="nameInput" class="form-label">Name</label>
-          <input type="text" class="form-control" id="nameInput" autocomplete="off" v-model="state.newName" disabled>
+          <input type="text" class="form-control" id="nameInput" autocomplete="off" v-model="state.name" disabled>
         </div>
   
         <div class="radio-grp">
-            <label class="btn btn-outline-success">{{state.newType}}</label>
+            <label class="btn btn-outline-success">{{state.type}}</label>
         </div>
   
         <div class="mb-3">
           <label for="ingredientsInput" class="form-label">Ingredients</label>
-          <textarea class="form-control" id="ingredientsInput" v-model="state.newIngredients" disabled></textarea>
+          <textarea class="form-control" id="ingredientsInput" v-model="state.ingredients" disabled></textarea>
         </div>
   
         <div class="mb-3">
           <label for="instructionsInput" class="form-label">Instructions</label>
-          <textarea class="form-control" id="instructionsInput" v-model="state.newInstructions" disabled></textarea>
+          <textarea class="form-control" id="instructionsInput" v-model="state.instructions" disabled></textarea>
         </div>
   
         <div class="mb-3">
           <label for="remarksInput" class="form-label">Remarks</label>
-          <textarea class="form-control" id="remarksInput" v-model="state.newRemarks" disabled></textarea>
+          <textarea class="form-control" id="remarksInput" v-model="state.remarks" disabled></textarea>
         </div>
       </div>
   

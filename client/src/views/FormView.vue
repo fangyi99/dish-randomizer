@@ -9,36 +9,36 @@
     <div class="form">
       <div class="mb-3">
         <label for="nameInput" class="form-label">Name</label>
-        <input type="text" class="form-control" id="nameInput" autocomplete="off" v-model="state.newName">
+        <input type="text" class="form-control" id="nameInput" autocomplete="off" v-model="state.name">
       </div>
 
       <div class="radio-grp">
-        <input type="radio" class="btn-check" name="options" id="optionMeat" autocomplete="off" checked v-model="state.newType" v-bind:value="'meat'">
+        <input type="radio" class="btn-check" name="options" id="optionMeat" autocomplete="off" checked v-model="state.type" v-bind:value="'meat'">
         <label class="btn btn-outline-success" for="optionMeat">Meat</label>
 
-        <input type="radio" class="btn-check" name="options" id="optionVeg" autocomplete="off" v-model="state.newType" v-bind:value="'vegetable'">
+        <input type="radio" class="btn-check" name="options" id="optionVeg" autocomplete="off" v-model="state.type" v-bind:value="'vegetable'">
         <label class="btn btn-outline-success" for="optionVeg">Vegetable</label>
 
-        <input type="radio" class="btn-check" name="options" id="optionSoup" autocomplete="off" v-model="state.newType" v-bind:value="'soup'">
+        <input type="radio" class="btn-check" name="options" id="optionSoup" autocomplete="off" v-model="state.type" v-bind:value="'soup'">
         <label class="btn btn-outline-success" for="optionSoup">Soup</label>
 
-        <input type="radio" class="btn-check" name="options" id="optionOthers" autocomplete="off" v-model="state.newType" v-bind:value="'others'">
+        <input type="radio" class="btn-check" name="options" id="optionOthers" autocomplete="off" v-model="state.type" v-bind:value="'others'">
         <label class="btn btn-outline-success" for="optionOthers">Others</label>
       </div>
 
       <div class="mb-3">
         <label for="ingredientsInput" class="form-label">Ingredients</label>
-        <textarea class="form-control" id="ingredientsInput" v-model="state.newIngredients"></textarea>
+        <textarea class="form-control" id="ingredientsInput" v-model="state.ingredients"></textarea>
       </div>
 
       <div class="mb-3">
         <label for="instructionsInput" class="form-label">Instructions</label>
-        <textarea class="form-control" id="instructionsInput" v-model="state.newInstructions"></textarea>
+        <textarea class="form-control" id="instructionsInput" v-model="state.instructions"></textarea>
       </div>
 
       <div class="mb-3">
         <label for="remarksInput" class="form-label">Remarks</label>
-        <textarea class="form-control" id="remarksInput" v-model="state.newRemarks"></textarea>
+        <textarea class="form-control" id="remarksInput" v-model="state.remarks"></textarea>
       </div>
     </div>
 
@@ -71,7 +71,7 @@ export default {
   })
 
     return {state, recipeId, getOne, createRecipe, updateRecipe}
-  },
+  }
 }
 
 </script>

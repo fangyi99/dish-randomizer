@@ -20,7 +20,7 @@
                             </div>
                             <div class="right">
                                 <router-link :to="'/form/' + recipe._id"><button class="btn btn-success btn-action"><img class="action" alt="Edit" src="../assets/edit.png"></button></router-link>
-                                <button class="btn btn-danger btn-action" @click="deleteRecipe(recipe._id)"><img class="action" alt="Delete" src="../assets/delete.png"></button>
+                                <button class="btn btn-danger btn-action" @click.stop="deleteRecipe(recipe._id)"><img class="action" alt="Delete" src="../assets/delete.png"></button>
                             </div>
                         </div>
                     </router-link>
