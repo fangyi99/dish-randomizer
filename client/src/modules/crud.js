@@ -9,8 +9,12 @@ const getRecipes = () => {
         ingredients: '',
         instructions: '',
         remarks: '',
+        searchKey: '',
         recipes: {},
+        filtered: {}
     })
+
+    const searchFilter = ref('')
 
     const route = useRoute();
     const router = useRouter();
@@ -40,6 +44,7 @@ const getRecipes = () => {
             .then(res => res.json())
             .then(data => {
                 state.value.recipes = data
+                state.value.filtered = data
             })
         }
         catch(err){
@@ -131,7 +136,22 @@ const getRecipes = () => {
           }
     }   
 
-    return {state, recipeId, getOne, getAllRecipes, createRecipe, updateRecipe, deleteRecipe, randomRecipe, resetForm}
+    const handleSearch = (search) => {
+        searchFilter.value = search;
+    }
+
+    const filteredRecipes = computed(() => {
+        if(searchFilter.value !== ''){
+            return state.value.recipes.filter((recipe)=>{
+                return recipe.name.toLowerCase().includes(searchFilter.value.toLowerCase())
+            })
+        }
+        else{
+            return state.value.recipes;
+        }
+    })
+
+    return {state, recipeId, getOne, getAllRecipes, createRecipe, updateRecipe, deleteRecipe, randomRecipe, resetForm, handleSearch, filteredRecipes}
 }
 
 export default getRecipes

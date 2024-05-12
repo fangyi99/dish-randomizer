@@ -9,22 +9,19 @@
                 <router-link to="/form"><button class="btn btn-nav btn-right">+</button></router-link>
             </div>
         </div>
+        <SearchForm @search="handleSearch"/>
         <table>
             <tbody>
-                <tr v-for="recipe in state.recipes" v-bind:key="recipe._id">
-                <td>
-                    <router-link :to="'/details/' + recipe._id" class="details">
+                <tr v-for="recipe in filteredRecipes" v-bind:key="recipe._id">
+                    <td>
                         <div class="table-container">
-                            <div class="left">
-                                {{ recipe.name }}
-                            </div>
+                            <router-link :to="'/details/' + recipe._id" class="left">{{ recipe.name }}</router-link>
                             <div class="right">
                                 <router-link :to="'/form/' + recipe._id"><button class="btn btn-success btn-action"><img class="action" alt="Edit" src="../assets/edit.png"></button></router-link>
-                                <button class="btn btn-danger btn-action" @click.stop="deleteRecipe(recipe._id)"><img class="action" alt="Delete" src="../assets/delete.png"></button>
+                                <button class="btn btn-danger btn-action" @click="deleteRecipe(recipe._id)"><img class="action" alt="Delete" src="../assets/delete.png"></button>
                             </div>
                         </div>
-                    </router-link>
-                </td>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -32,20 +29,23 @@
 </template>
 
 <script>
-
+    import SearchForm from '../components/SearchForm.vue';
     import crud from '../modules/crud'
     import {onMounted} from 'vue'
 
     export default {
+        components:{
+            SearchForm
+        },
         setup(){
 
-            const {state, getAllRecipes, deleteRecipe} = crud()
+            const {state, getAllRecipes, deleteRecipe, handleSearch, filteredRecipes} = crud()
 
             onMounted(()=>{
                 getAllRecipes()
             })
 
-            return {state, getAllRecipes, deleteRecipe}
+            return {state, getAllRecipes, deleteRecipe, handleSearch, filteredRecipes}
         }
     }
 
@@ -67,6 +67,13 @@
 
 .left, .right, h3{
     display:inline-block;
+}
+
+.left{
+    width: 60%;
+    text-align: left;
+    text-decoration: none;
+    color: black;
 }
 
 .right{
@@ -101,11 +108,6 @@ td:hover{
 .table-container{
     display: flex;
     justify-content: space-between;
-}
-
-.details{
-    text-decoration: none;
-    color: black;
 }
 
 .btn-action{

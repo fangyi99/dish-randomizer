@@ -17,7 +17,7 @@
         <label class="btn btn-outline-success" for="optionMeat">Meat</label>
 
         <input type="radio" class="btn-check" name="options" id="optionVeg" autocomplete="off" v-model="state.type" v-bind:value="'vegetable'">
-        <label class="btn btn-outline-success" for="optionVeg">Vegetable</label>
+        <label class="btn btn-outline-success" for="optionVeg">Veg</label>
 
         <input type="radio" class="btn-check" name="options" id="optionSoup" autocomplete="off" v-model="state.type" v-bind:value="'soup'">
         <label class="btn btn-outline-success" for="optionSoup">Soup</label>
