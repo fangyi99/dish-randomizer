@@ -3,12 +3,19 @@
     <div class="nav">
       <h3 v-if="$route.params.id">Update</h3>
       <h3 v-else>Create</h3>
-      <router-link to="/menu"><button class="btn btn-nav right"><img alt="Close" src="../assets/close.png"></button></router-link>
+      <router-link to="/menu"><button class="btn btn-nav right"><img alt="Close" src="../assets/icons/close.png"></button></router-link>
     </div>
 
+    <PopupForm v-if="popupTrigger.isOpen" :TogglePopup="()=>TogglePopup()" @clickedThumbnail="getClickedThumbnail">
+      <div class="btn-grp">
+        <button class="btn btn-danger popup-close" @click="()=>Cancel()">Cancel</button>
+        <button class="btn btn-success popup-close" @click="Save(); TogglePopup();">Save</button>
+      </div>
+    </PopupForm>
+
     <div class="form">
-      <div class="mb-3">
-        <label for="nameInput" class="form-label">Name</label>
+      <div class="tbnname">
+        <img :src="require(`@/assets/thumbnails/${state.thumbnail}`)" class="thumbnails" @click="() => TogglePopup()"/> 
         <input type="text" class="form-control" id="nameInput" autocomplete="off" v-model="state.name">
       </div>
 
@@ -52,25 +59,52 @@
       <button type="button" class="btn btn-success" @click="createRecipe()">Create</button>
     </div>
 
-
   </div>
 </template>
 
 <script>
-import {onMounted} from 'vue'
+import PopupForm from '../components/PopupForm.vue';
+import {onMounted, ref} from 'vue'
 import crud from '../modules/crud'
 
 export default {
+  components:{
+    PopupForm
+  },
   setup(){
-    const {state, recipeId, getOne, createRecipe, updateRecipe} = crud()
+    const {state, recipeId, getOne, createRecipe, updateRecipe, updateThumbnail} = crud()
+    
+    const popupTrigger = ref({
+      isOpen: false
+    });
+
+    const TogglePopup = () => {
+      popupTrigger.value.isOpen = !popupTrigger.value.isOpen
+    }
+
+    const tempThumbnail = ref('');
+
+    const getClickedThumbnail = (path) => {
+      tempThumbnail.value = path;
+    }
+
+    const Save = () => {
+      state.thumbnail = tempThumbnail.value;
+      updateThumbnail(tempThumbnail.value);
+    }
+
+    const Cancel = () => {
+      tempThumbnail.value = '';
+      TogglePopup();
+    }
 
     onMounted(() => {
-    if (recipeId.value) {
-        getOne(recipeId.value);
-      }
-  })
+      if (recipeId.value) {
+          getOne(recipeId.value);
+        }
+    })
 
-    return {state, recipeId, getOne, createRecipe, updateRecipe}
+    return {state, recipeId, getOne, createRecipe, updateRecipe, PopupForm, popupTrigger, TogglePopup, getClickedThumbnail, Save, Cancel, updateThumbnail}
   }
 }
 
@@ -100,6 +134,19 @@ img{
   width: 15px;
   height: 15px;
 }
+
+.thumbnails{
+    width:25%;
+    height:auto;
+    margin-right: 30px;
+}
+
+.tbnname{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
 
 .form{
   width: 85%;

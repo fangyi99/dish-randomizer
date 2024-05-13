@@ -9,9 +9,8 @@ const getRecipes = () => {
         ingredients: '',
         instructions: '',
         remarks: '',
-        searchKey: '',
-        recipes: {},
-        filtered: {}
+        thumbnail: 'default.png',
+        recipes: {}
     })
 
     const searchFilter = ref('')
@@ -20,6 +19,10 @@ const getRecipes = () => {
     const router = useRouter();
 
     const recipeId = computed(() => route.params.id)
+
+    const updateThumbnail = (path) => {
+        state.value.thumbnail = path;
+    }
 
     const getOne = async (id) => {
         try {
@@ -31,6 +34,7 @@ const getRecipes = () => {
                 state.value.ingredients = data.ingredients;
                 state.value.instructions = data.instructions;
                 state.value.remarks = data.remarks;
+                state.value.thumbnail = data.thumbnail;
             })
         }
         catch(error) {
@@ -63,7 +67,8 @@ const getRecipes = () => {
                 type: state.value.type,
                 ingredients: state.value.ingredients,
                 instructions: state.value.instructions,
-                remarks: state.value.remarks
+                remarks: state.value.remarks,
+                thumbnail: state.value.thumbnail
             })
         }
         fetch("http://localhost:8000/api/recipes", requestOptions)
@@ -87,7 +92,8 @@ const getRecipes = () => {
                 type: state.value.type,
                 ingredients: state.value.ingredients,
                 instructions: state.value.instructions,
-                remarks: state.value.remarks
+                remarks: state.value.remarks,
+                thumbnail: state.value.thumbnail
             })
         }
         fetch("http://localhost:8000/api/recipes/" + recipeId.value, requestOptions)
@@ -113,6 +119,7 @@ const getRecipes = () => {
           ingredients: '',
           instructions: '',
           remarks: '',
+          thumbnail: 'default.png'
         };
     };
 
@@ -129,6 +136,7 @@ const getRecipes = () => {
                   state.value.ingredients = random.ingredients;
                   state.value.instructions = random.instructions;
                   state.value.remarks = random.remarks;
+                  state.value.thumbnail = random.thumbnail;
               })
           }
           catch(error) {
@@ -151,7 +159,7 @@ const getRecipes = () => {
         }
     })
 
-    return {state, recipeId, getOne, getAllRecipes, createRecipe, updateRecipe, deleteRecipe, randomRecipe, resetForm, handleSearch, filteredRecipes}
+    return {state, recipeId, getOne, getAllRecipes, createRecipe, updateRecipe, deleteRecipe, randomRecipe, resetForm, handleSearch, filteredRecipes, updateThumbnail}
 }
 
 export default getRecipes

@@ -2,20 +2,20 @@
   <div class="container">
     <div class="nav">
       <h3><b>What's cooking?</b></h3>
-      <router-link to="/menu"><button class="btn btn-nav right"><img class="menu" alt="Menu" src="../assets/menu.png"></button></router-link>
+      <router-link to="/menu"><button class="btn btn-nav right"><img class="menu" alt="Menu" src="../assets/icons/menu.png"></button></router-link>
     </div>
     <div class="options">
         <input type="radio" class="btn-check" name="options" id="optionMeat" autocomplete="off" checked v-model="state.type" v-bind:value="'meat'">
-        <label class="btn btn-outline-success" for="optionMeat"><img alt="Meat" src="../assets/meat.png"></label>
+        <label class="btn btn-outline-success" for="optionMeat"><img alt="Meat" src="../assets/icons/meat.png"></label>
 
         <input type="radio" class="btn-check" name="options" id="optionVeg" autocomplete="off" v-model="state.type" v-bind:value="'vegetable'">
-        <label class="btn btn-outline-success" for="optionVeg"><img alt="Vegetable" src="../assets/veg.png"></label>
+        <label class="btn btn-outline-success" for="optionVeg"><img alt="Vegetable" src="../assets/icons/veg.png"></label>
 
         <input type="radio" class="btn-check" name="options" id="optionSoup" autocomplete="off" v-model="state.type" v-bind:value="'soup'">
-        <label class="btn btn-outline-success" for="optionSoup"><img alt="Soup" src="../assets/soup.png"></label>
+        <label class="btn btn-outline-success" for="optionSoup"><img alt="Soup" src="../assets/icons/soup.png"></label>
 
         <input type="radio" class="btn-check" name="options" id="optionOthers" autocomplete="off" v-model="state.type" v-bind:value="'others'">
-        <label class="btn btn-outline-success" for="optionOthers"><img alt="Others" src="../assets/more.png"></label>
+        <label class="btn btn-outline-success" for="optionOthers"><img alt="Others" src="../assets/icons/more.png"></label>
       </div>
 
      <div class="animation-container">
@@ -116,7 +116,10 @@ img{
   margin: auto;
   margin-top: 30px;
   margin-bottom: 30px;
-  padding: 10px;
+  padding: 10px 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 

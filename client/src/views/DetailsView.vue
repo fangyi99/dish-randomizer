@@ -2,17 +2,17 @@
     <div class="container">
       <div class="nav">
         <div class="left">
-                <router-link to="/menu"><button class="btn btn-nav btn-back"><img alt="Back" src="../assets/back.png"></button></router-link>
+                <router-link to="/menu"><button class="btn btn-nav btn-back"><img alt="Back" src="../assets/icons/back.png"></button></router-link>
                 <h3>Details</h3>
             </div>
             <div class="right">
-                <router-link :to="'/form/' + recipeId"><button class="btn btn-nav btn-right"><img id="edit" alt="Edit" src="../assets/edit.png"></button></router-link>
+                <router-link :to="'/form/' + recipeId"><button class="btn btn-nav btn-right"><img id="edit" alt="Edit" src="../assets/icons/edit.png"></button></router-link>
             </div>
       </div>
   
       <div class="form">
-        <div class="mb-3">
-          <label for="nameInput" class="form-label">Name</label>
+        <div class="tbnname">
+          <img :src="require(`@/assets/thumbnails/${state.thumbnail}`)" class="thumbnails"/> 
           <input type="text" class="form-control" id="nameInput" autocomplete="off" v-model="state.name" disabled>
         </div>
   
@@ -103,6 +103,18 @@
   img{
     width: 15px;
     height: 15px;
+  }
+
+  .thumbnails{
+    width:25%;
+    height:auto;
+    margin-right: 30px;
+}
+
+  .tbnname{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
   }
   
   .form{

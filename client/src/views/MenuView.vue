@@ -2,7 +2,7 @@
     <div class="container">
         <div class="nav">
             <div class="left">
-                <router-link to="/"><button class="btn btn-nav btn-back"><img alt="Back" src="../assets/back.png"></button></router-link>
+                <router-link to="/"><button class="btn btn-nav btn-back"><img alt="Back" src="../assets/icons/back.png"></button></router-link>
                 <h3>Menu</h3>
             </div>
             <div class="right">
@@ -15,15 +15,15 @@
                 <tr v-for="recipe in filteredRecipes" v-bind:key="recipe._id">
                     <td>
                         <div class="table-container">
-                            <router-link :to="'/details/' + recipe._id" class="left">{{ recipe.name }}</router-link>
+                            <router-link :to="'/details/' + recipe._id" class="left"><img :src="require(`@/assets/thumbnails/${recipe.thumbnail}`)" class="thumbnails"> <div class="label">{{ recipe.name }}</div></router-link>
                             <div class="right">
-                                <router-link :to="'/form/' + recipe._id"><button class="btn btn-success btn-action"><img class="action" alt="Edit" src="../assets/edit.png"></button></router-link>
-                                <button class="btn btn-danger btn-action" @click="deleteRecipe(recipe._id)"><img class="action" alt="Delete" src="../assets/delete.png"></button>
+                                <router-link :to="'/form/' + recipe._id"><button class="btn btn-success btn-action"><img class="action" alt="Edit" src="../assets/icons/edit.png"></button></router-link>
+                                <button class="btn btn-danger btn-action" @click="deleteRecipe(recipe._id)"><img class="action" alt="Delete" src="../assets/icons/delete.png"></button>
                             </div>
                         </div>
                     </td>
                 </tr>
-            </tbody>
+            </tbody>    
         </table>
     </div>
 </template>
@@ -60,7 +60,7 @@
 .nav{
     width: 85%;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
 }
@@ -127,8 +127,24 @@ td:hover{
     filter: brightness(90%);
 }
 
+.label{
+    display: inline-block;
+    margin-top: 12px;
+    width: 132px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 img{
     width:15px;
     height:15px;
 }
+
+.thumbnails{
+    width:40px;
+    height:40px;
+    margin-right: 10px;
+}
+
 </style>
