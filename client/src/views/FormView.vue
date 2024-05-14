@@ -15,7 +15,7 @@
 
     <div class="form">
       <div class="tbnname">
-        <img :src="require(`@/assets/thumbnails/${state.thumbnail}`)" class="thumbnails" @click="() => TogglePopup()"/> 
+        <img :src="require(`@/assets/thumbnails/${state.thumbnail}`)" class="thumbnail" @click="() => TogglePopup()"/> 
         <input type="text" class="form-control" id="nameInput" autocomplete="off" v-model="state.name">
       </div>
 
@@ -23,7 +23,7 @@
         <input type="radio" class="btn-check" name="options" id="optionMeat" autocomplete="off" checked v-model="state.type" v-bind:value="'meat'">
         <label class="btn btn-outline-success" for="optionMeat">Meat</label>
 
-        <input type="radio" class="btn-check" name="options" id="optionVeg" autocomplete="off" v-model="state.type" v-bind:value="'vegetable'">
+        <input type="radio" class="btn-check" name="options" id="optionVeg" autocomplete="off" v-model="state.type" v-bind:value="'veg'">
         <label class="btn btn-outline-success" for="optionVeg">Veg</label>
 
         <input type="radio" class="btn-check" name="options" id="optionSoup" autocomplete="off" v-model="state.type" v-bind:value="'soup'">
@@ -135,10 +135,13 @@ img{
   height: 15px;
 }
 
-.thumbnails{
+.thumbnail{
     width:25%;
     height:auto;
     margin-right: 30px;
+    border: #82AA4C solid 3px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .tbnname{
@@ -162,9 +165,10 @@ img{
 }
 
 .btn-outline-success{
-  margin-right: 5px;
+  margin-right: 10px;
   border-color: #82AA4C;
   color: #82AA4C;
+  width: 25%;
 }
 
 .btn-check:checked + .btn{

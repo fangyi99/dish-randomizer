@@ -8,8 +8,8 @@
         <input type="radio" class="btn-check" name="options" id="optionMeat" autocomplete="off" checked v-model="state.type" v-bind:value="'meat'">
         <label class="btn btn-outline-success" for="optionMeat"><img alt="Meat" src="../assets/icons/meat.png"></label>
 
-        <input type="radio" class="btn-check" name="options" id="optionVeg" autocomplete="off" v-model="state.type" v-bind:value="'vegetable'">
-        <label class="btn btn-outline-success" for="optionVeg"><img alt="Vegetable" src="../assets/icons/veg.png"></label>
+        <input type="radio" class="btn-check" name="options" id="optionVeg" autocomplete="off" v-model="state.type" v-bind:value="'veg'">
+        <label class="btn btn-outline-success" for="optionVeg"><img alt="Veg" src="../assets/icons/veg.png"></label>
 
         <input type="radio" class="btn-check" name="options" id="optionSoup" autocomplete="off" v-model="state.type" v-bind:value="'soup'">
         <label class="btn btn-outline-success" for="optionSoup"><img alt="Soup" src="../assets/icons/soup.png"></label>
@@ -36,7 +36,7 @@
     <div class="btn-grp">
       <router-link v-if="state.name" :to="'/details/' + state.id"><button type="button" class="btn btn-success">Details ></button></router-link>
       <button v-else type="button" class="btn btn-success" disabled>Details ></button>
-      <button type="button" class="btn btn-success" @click="restartAnimation(); randomRecipe(state.type)">Roll</button>
+      <button type="button" class="btn btn-success" @click="restartAnimation(); randomRecipe(state.type)">Generate</button>
     </div>
 
   </div>

@@ -54,13 +54,13 @@
 <style lang="scss" scoped>
 
 .container{
-  margin: 20px 0px;
+  padding: 20px 0px;
+  margin: auto;
+  width: 85%;
 }
 
 .nav{
-    width: 85%;
     margin: auto;
-    margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
 }
@@ -93,7 +93,8 @@
 //table
 table{
     margin: auto;
-    width: 85%;
+    table-layout: fixed;
+    width:100%;
 }
 
 table,th,td{
@@ -130,7 +131,7 @@ td:hover{
 .label{
     display: inline-block;
     margin-top: 12px;
-    width: 132px;
+    width: 67%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

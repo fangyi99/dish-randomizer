@@ -1,5 +1,6 @@
 import {ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
+import _ from 'lodash';
 
 const getRecipes = () => {
     const state = ref({
@@ -150,12 +151,22 @@ const getRecipes = () => {
 
     const filteredRecipes = computed(() => {
         if(searchFilter.value !== ''){
-            return state.value.recipes.filter((recipe)=>{
-                return recipe.name.toLowerCase().includes(searchFilter.value.toLowerCase())
-            })
+            return _.sortBy(
+                state.value.recipes.filter((recipe)=>{
+                    return recipe.name.toLowerCase().includes(searchFilter.value.toLowerCase())
+                }),
+                ['type'],
+                ['asc']
+            );
+
+
         }
         else{
-            return state.value.recipes;
+            return _.sortBy(
+                state.value.recipes,
+                ['type'],
+                ['asc']
+            );
         }
     })
 

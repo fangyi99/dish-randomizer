@@ -17,9 +17,9 @@
 <style lang="scss" scoped>
 
 input{
-    padding-left: 10px;
-    width: 85%;
-    margin: 20px;
+    padding: 10px;
+    width: 100%;
+    margin: 20px 0px;
 }
 
 input:focus{
