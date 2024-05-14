@@ -4,21 +4,11 @@
 This app simplifies daily meal planning by suggesting a random dish from a collection of saved recipes based on the selected type.
 
 ## Screenshots
-<table width="100%">
-  <tbody>
-    <tr>
-      <td width="1%">
-	      <a href="https://ibb.co/m54mMVL"><img src="https://i.ibb.co/m54mMVL/Home.png" alt="Home" border="0"></a> 
-	    </td>
-      <td width="1%">
-	      <a href="https://ibb.co/DMyRyY3"><img src="https://i.ibb.co/DMyRyY3/Menu.png" alt="Menu" border="0"></a>
-	    </td>
-      <td width="1%">
-	      <a href="https://ibb.co/jk9KcbW"><img src="https://i.ibb.co/jk9KcbW/Form.png" alt="Form" border="0"></a> 
-      </td>
-    </tr>
-  </tbody>
-</table>
+<p float="left">
+  <a href="https://ibb.co/m54mMVL"><img src="https://i.ibb.co/m54mMVL/Home.png" alt="Home" border="0"></a>
+  <a href="https://ibb.co/DMyRyY3"><img src="https://i.ibb.co/DMyRyY3/Menu.png" alt="Menu" border="0"></a>
+  <a href="https://ibb.co/jk9KcbW"><img src="https://i.ibb.co/jk9KcbW/Form.png" alt="Form" border="0"></a>
+</p>
 
 ## Setup
 1. Clone repository <br>
@@ -52,7 +42,7 @@ npm run serve
 - NodeJS
 
 ## Attributes
-- [Freepik](www.freepik.com)
+- [Freepik] (www.freepik.com)
 
 </p>
 
