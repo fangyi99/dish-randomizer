@@ -25,9 +25,9 @@ const getRecipes = () => {
         state.value.thumbnail = path;
     }
 
-    const getOne = async (id) => {
+    const getOne = async (id) => {  
         try {
-          await fetch("http://localhost:8000/api/recipes/" + id)
+          await fetch(process.env.VUE_APP_API_URL + "/recipes/" + id)
             .then(res =>  res.json() ) 
             .then(data => {
                 state.value.name = data.name;
@@ -39,13 +39,13 @@ const getRecipes = () => {
             })
         }
         catch(error) {
-          console.log(error)
+            console.log(error)
         }
     }
 
     const getAllRecipes = async () => {
         try{
-            await fetch("http://localhost:8000/api/recipes")
+            await fetch(process.env.VUE_APP_API_URL + "/recipes")
             .then(res => res.json())
             .then(data => {
                 state.value.recipes = data
@@ -72,7 +72,7 @@ const getRecipes = () => {
                 thumbnail: state.value.thumbnail
             })
         }
-        fetch("http://localhost:8000/api/recipes", requestOptions)
+        fetch(process.env.VUE_APP_API_URL + "/recipes", requestOptions)
         .then(()=> {
             resetForm();
             router.push({path: "/menu"});
@@ -97,9 +97,8 @@ const getRecipes = () => {
                 thumbnail: state.value.thumbnail
             })
         }
-        fetch("http://localhost:8000/api/recipes/" + recipeId.value, requestOptions)
+        fetch(process.env.VUE_APP_API_URL + "/recipes/" + recipeId.value, requestOptions)
         .then(res => res.body)
-        .then(res => {console.log(res)})
         .then(()=>{
             getAllRecipes()
             router.push({path: "/menu"})
@@ -107,7 +106,7 @@ const getRecipes = () => {
     }
 
     const deleteRecipe = (_id) => {
-        fetch("http://localhost:8000/api/recipes/" + _id, {method: "DELETE"})
+        fetch(process.env.VUE_APP_API_URL + "/recipes/" + _id, {method: "DELETE"})
         .then(() => {
             getAllRecipes()
         })
@@ -126,7 +125,7 @@ const getRecipes = () => {
 
     const randomRecipe = (type) => {
         try {
-            fetch("http://localhost:8000/api/recipes")
+            fetch(process.env.VUE_APP_API_URL + "/recipes")
               .then(res =>  res.json() ) 
               .then(data => {
                   const filteredRecipes = data.filter(r => r.type === type)

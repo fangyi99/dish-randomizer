@@ -16,24 +16,21 @@ This app simplifies daily meal planning by suggesting a random dish from a colle
 git clone https://github.com/fangyi99/dish-randomizer.git
 ```
 
-2. Install dependencies <br>
-```
-npm install
-```
-
-3. Run server script <br>
+2. Install dependencies and Run server script <br>
 ```
 cd server
+npm install
 node index.js
 ```
 
-4. Run client script <br>
+3. Install dependencies and Run client script <br>
 ```
 cd client
+npm install
 npm run serve
 ```
 
-5. Open ```http://localhost:8080``` in browser.
+4. Open ```http://localhost:8080``` in browser.
 
 ## Tech Stack
 - MongoDB
