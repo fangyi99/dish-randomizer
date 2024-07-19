@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const mongoose = require('mongoose');
 const Recipe = require('./models/recipe.model.js');
@@ -11,14 +12,12 @@ app.use(cors());
 
 app.use("/api/recipes", recipeRoutes);
 
-
-var CONNECTION_STRING = "mongodb+srv://looifangyi:GqSRIzxt3FW90uAg@cluster0.geyxgdq.mongodb.net/Recipe-Randomizer?retryWrites=true&w=majority&appName=Cluster0";
-
-app.listen(8000, ()=>{
-    console.log('Server is running on port 8000');
+const port = process.env.PORT || process.env.PROD_PORT;
+app.listen(port, ()=>{
+    console.log('Server is running on port ' + port);
 })
 
-mongoose.connect(CONNECTION_STRING).then(()=>{
+mongoose.connect(process.env.CONNECTION_STRING).then(()=>{
     console.log("Connected to MongoDB!");
 }).catch(()=>{
     console.log("Connection to MongoDB failed!");
