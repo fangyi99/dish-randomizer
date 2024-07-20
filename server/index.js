@@ -15,6 +15,7 @@ app.use("/api/recipes", recipeRoutes);
 const port = process.env.PORT || process.env.PROD_PORT;
 app.listen(port, ()=>{
     console.log('Server is running on port ' + port);
+    console.log(process.env.CONNECTION_STRING);
 })
 
 mongoose.connect(process.env.CONNECTION_STRING).then(()=>{
